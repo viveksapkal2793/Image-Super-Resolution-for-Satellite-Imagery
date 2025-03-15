@@ -9,8 +9,8 @@ from scipy.io import savemat
 from torch.autograd import Variable
 from skimage.metrics import peak_signal_noise_ratio as compare_psnr
 
-from Super_Resolution_Model.models import DMCN_prelu
-from Super_Resolution_Model.utils import weights_init_kaiming
+from Denoising_Model.models import DMCN_prelu
+from Denoising_Model.utils import weights_init_kaiming
 from Super_Resolution_Model.models.downsampler import Downsampler
 from Super_Resolution_Model.models.skip import skip
 from Super_Resolution_Model.utils.sr_utils import get_noise, get_params, optimize
