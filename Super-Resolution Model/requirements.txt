@@ -1,0 +1,11 @@
+jupyter
+numpy
+pyyaml
+mkl
+setuptools
+cmake
+cffi
+torch==2.0.0
+matplotlib
+scikit-image
+torchvision
