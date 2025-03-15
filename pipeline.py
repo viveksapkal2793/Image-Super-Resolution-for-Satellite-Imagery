@@ -6,12 +6,14 @@ import numpy as np
 import scipy.io
 import matplotlib.pyplot as plt
 from torch.autograd import Variable
-from models import DMCN_prelu
-from utils import weights_init_kaiming
 from skimage.metrics import peak_signal_noise_ratio as compare_psnr
-from models.downsampler import Downsampler
-from models.skip import skip
-from utils.sr_utils import get_noise, get_params, optimize
+
+from Super_Resolution_Model.models import DMCN_prelu
+from Super_Resolution_Model.utils import weights_init_kaiming
+from Super_Resolution_Model.models.downsampler import Downsampler
+from Super_Resolution_Model.models.skip import skip
+from Super_Resolution_Model.utils.sr_utils import get_noise, get_params, optimize
+
 
 def load_model(model_path, device):
     model = DMCN_prelu()
