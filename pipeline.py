@@ -39,6 +39,7 @@ def process_image(image_path, device):
     img = np.expand_dims(img, 0)
     img = np.expand_dims(img, 0)
     img = torch.FloatTensor(img / 255.0).to(device)
+    print('processed image for denoisng')
     return img
 
 def save_image(tensor, output_path):
@@ -52,6 +53,7 @@ def denoise_image(model, image_path, output_path, device):
         img = Variable(img)
         output = model(img)
         output = torch.clamp(output, 0., 1.)
+    print('denoised image')
     save_image(output, output_path)
 
 def prepare_sr_image(input_path, output_path):
@@ -61,9 +63,11 @@ def prepare_sr_image(input_path, output_path):
     LR = cv2.resize(HR, (96, 96))
     bicubic = cv2.resize(LR, (192, 192), interpolation=cv2.INTER_CUBIC)
     nearest = cv2.resize(LR, (192, 192), interpolation=cv2.INTER_NEAREST)
+    print('preprocessed image for super-resolution model input')
     savemat(output_path, {'HR': HR, 'LR': LR, 'bicubic': bicubic, 'nearest': nearest})
 
 def train_sr_model(sr_input_path, output_dir):
+    print('training super-resolution model')
     imgs = scipy.io.loadmat(sr_input_path)
     factor = 2
     band = 24
@@ -140,6 +144,8 @@ def train_sr_model(sr_input_path, output_dir):
     i = 0
     p = get_params(OPT_OVER, net, net_input)
     optimize(OPTIMIZER, p, closure, LR, num_iter)
+    print('training complete')
+    print('super-resolution images saved in demo_data/sr_output_imgs')
 
 def main():
     parser = argparse.ArgumentParser(description="Denoising and Super-Resolution Pipeline")
