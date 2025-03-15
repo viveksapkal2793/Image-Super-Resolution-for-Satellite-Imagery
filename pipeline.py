@@ -5,6 +5,7 @@ import torch
 import numpy as np
 import scipy.io
 import matplotlib.pyplot as plt
+from scipy.io import savemat
 from torch.autograd import Variable
 from skimage.metrics import peak_signal_noise_ratio as compare_psnr
 
