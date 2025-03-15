@@ -63,6 +63,21 @@ def prepare_sr_image(input_path, output_path):
     LR = cv2.resize(HR, (96, 96))
     bicubic = cv2.resize(LR, (192, 192), interpolation=cv2.INTER_CUBIC)
     nearest = cv2.resize(LR, (192, 192), interpolation=cv2.INTER_NEAREST)
+    
+    # Create synthetic bands by applying brightness variations
+    def create_bands(image, num_bands=102):
+        bands = [image]
+        for i in range(1, num_bands):
+            factor = 1 + (i * 0.1)
+            band = np.clip(image * factor, 0, 1)
+            bands.append(band)
+        return np.stack(bands, axis=-1)
+    
+    HR = create_bands(HR, num_bands=102)
+    LR = create_bands(LR, num_bands=102)
+    bicubic = create_bands(bicubic, num_bands=102)
+    nearest = create_bands(nearest, num_bands=102)
+    
     print('preprocessed image for super-resolution model input')
     savemat(output_path, {'HR': HR, 'LR': LR, 'bicubic': bicubic, 'nearest': nearest})
 
@@ -137,7 +152,8 @@ def train_sr_model(sr_input_path, output_dir):
         if i % save_every == 0:
             out_HR_np = out_HR.detach().cpu().squeeze().numpy().transpose(1, 2, 0)
             scipy.io.savemat(os.path.join(output_dir, f"result_sr_2D_it{i:05d}.mat"), {'pred': np.clip(out_HR_np, 0, 1)})
-
+            # Save the image in PNG format
+            # save_image(torch.tensor(out_HR_np), os.path.join(output_dir, f"result_sr_2D_it{i:05d}.png"))
         i += 1
         return total_loss
 
