@@ -53,7 +53,7 @@ def prepare_data(data_path, patch_size, stride, aug_times=1, debug='N'):
         for k in range(len(scales)):
             Img = cv2.resize(img, (int(h*scales[k]), int(w*scales[k])), interpolation=cv2.INTER_CUBIC)  # 构造不同的清晰度
             Img = np.expand_dims(Img[:,:,0].copy(), 0)
-            Img = np.float32(normalize(Img))  # 归一化为小数
+            Img = np.float32(normalize(Img))  
             patches = Im2Patch(Img, win=patch_size, stride=stride)
             print("file: %s scale %.1f # samples: %d" % (files[i], scales[k], patches.shape[3]*aug_times))
             for n in range(patches.shape[3]):
