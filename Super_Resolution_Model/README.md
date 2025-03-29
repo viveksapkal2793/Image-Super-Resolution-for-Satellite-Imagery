@@ -138,3 +138,4 @@ You can visualize the output using the provided visualization functions or exter
 Super-Resolution:
 
 ![image sr](https://github.com/viveksapkal2793/Image-Super-Resolution-for-Satellite-Imagery/raw/main/Super_Resolution_Model/figs/dip.png)
+*Comparison of low-resolution input (left), bicubic upsampling (middle), and our DIP-based super-resolution output (right)*
