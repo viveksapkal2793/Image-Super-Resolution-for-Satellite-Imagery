@@ -4,14 +4,14 @@ import cv2
 import torch
 import matplotlib.pyplot as plt
 from torch.autograd import Variable
-from models import DMCN_prelu
+from models import Denoising_Model
 from utils import weights_init_kaiming
 import numpy as np
 from skimage.metrics import peak_signal_noise_ratio as compare_psnr
 from skimage.metrics import structural_similarity as compare_ssim
 
 def load_model(model_path, device):
-    model = DMCN_prelu()
+    model = Denoising_Model()
     model.apply(weights_init_kaiming)
     model = model.to(device)
     
