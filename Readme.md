@@ -30,3 +30,5 @@ This project contains different deep learning models for image super-resolution 
     ```
 
 ## Usage
+
+Usage of both Models is descibed in their respective directories.
