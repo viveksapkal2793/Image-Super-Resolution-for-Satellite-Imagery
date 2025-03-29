@@ -137,4 +137,4 @@ You can visualize the output using the provided visualization functions or exter
 
 Super-Resolution:
 
-![image sr](https://github.com/viveksapkal2793/Image-Super-Resolution-for-Satellite-Imagery/Super_Resolution_Model/blob/main/figs/dip.png)
+![image sr](https://github.com/viveksapkal2793/Image-Super-Resolution-for-Satellite-Imagery/raw/main/Super_Resolution_Model/figs/dip.png)
