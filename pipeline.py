@@ -9,7 +9,7 @@ from scipy.io import savemat
 from torch.autograd import Variable
 from skimage.metrics import peak_signal_noise_ratio as compare_psnr
 
-from Denoising_Model.models import DMCN_prelu
+from Denoising_Model.models import Denoising_Model
 from Denoising_Model.utils import weights_init_kaiming
 from Super_Resolution_Model.models.downsampler import Downsampler
 from Super_Resolution_Model.models.skip import skip
@@ -17,7 +17,7 @@ from Super_Resolution_Model.utils.sr_utils import get_noise, get_params, optimiz
 
 
 def load_model(model_path, device):
-    model = DMCN_prelu()
+    model = Denoising_Model()
     model.apply(weights_init_kaiming)
     model = model.to(device)
     

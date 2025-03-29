@@ -69,9 +69,9 @@ class UpSample(nn.Module):
         x = self.pixel_shuffle(x)
         return x
 
-class DMCN_prelu(nn.Module):
+class Denoising_Model(nn.Module):
     def __init__(self, BN=True, width = 64):
-        super(DMCN_prelu, self).__init__()
+        super(Denoising_Model, self).__init__()
         self.input1 = nn.Conv2d(in_channels=1, out_channels=width, kernel_size=3, stride=1, padding=1, bias=False)
         self.input2 = nn.Conv2d(in_channels=width, out_channels=width, kernel_size=3, stride=1, padding=1, bias=False)
         self.BN1 = nn.BatchNorm2d(width)

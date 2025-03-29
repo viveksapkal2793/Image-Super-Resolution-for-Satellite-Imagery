@@ -6,7 +6,7 @@ sys.path.append('./')
 import torch.optim as optim
 import torchvision.utils as utils
 from dataset import prepare_data, Dataset
-from models import DMCN_prelu
+from models import Denoising_Model
 from tensorboardX import SummaryWriter
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
@@ -56,7 +56,7 @@ def main():
     # Build model
     print('Denoising_Blind <==> Part1 :Build model  <==> Begin')
 
-    net = DMCN_prelu()
+    net = Denoising_Model()
     net.apply(weights_init_kaiming)
     criterion = nn.MSELoss(size_average=False)
     # Move to GPU
